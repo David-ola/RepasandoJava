@@ -1,32 +1,13 @@
 package com.company.Modelos;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class Alumno {
     private String nombre;
     private String apellidos;
-    private Date fechaNacimiento;
+    private Date nacimiento;
     private String dni;
-
-    @Override
-    public String toString() {
-        return "Alumno{" +
-                "nombre='" + nombre + '\'' +
-                ", apellidos='" + apellidos + '\'' +
-                ", fechaNacimiento=" + fechaNacimiento +
-                ", dni='" + dni + '\'' +
-                '}';
-    }
-
-    public Alumno(String nombre, String apellidos, Date fechaNacimiento, String dni) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.fechaNacimiento = fechaNacimiento;
-        this.dni = dni;
-    }
 
     public String getNombre() {
         return nombre;
@@ -44,12 +25,12 @@ public class Alumno {
         this.apellidos = apellidos;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
+    public Date getNacimiento() {
+        return nacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setNacimiento(Date nacimiento) {
+        this.nacimiento = nacimiento;
     }
 
     public String getDni() {
@@ -60,24 +41,44 @@ public class Alumno {
         this.dni = dni;
     }
 
-    public int getEdad(){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY");
-        String edadS=simpleDateFormat.format(fechaNacimiento);
-        int edad=Integer.parseInt(simpleDateFormat.format(new Date()))-Integer.parseInt(edadS);
-        return edad;
+    public Alumno(String nombre, String apellidos, Date nacimiento, String dni) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.nacimiento = nacimiento;
+        this.dni = dni;
     }
 
-    public int getEdad2(){
-        Calendar today = Calendar.getInstance();
-        Calendar c = new GregorianCalendar();
-        c.setTime(this.fechaNacimiento);
-        int diffYear = today.get(Calendar.YEAR) - c.get(Calendar.YEAR);
-        int diffMonth =today.get(Calendar.MONTH) - c.get(Calendar.MONTH);
-        int diffDays=today.get(Calendar.DAY_OF_MONTH) - c.get(Calendar.DAY_OF_MONTH);
-        if(diffMonth<0) diffYear-=1;
-        if(diffMonth==0)
-            if(diffDays<0) diffYear-=1;
+    @Override
+    public String toString() {
+        return "alumno{" +
+                "nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", nacimiento=" + nacimiento +
+                ", dni='" + dni + '\'' +
+                '}';
+    }
 
-        return diffYear;
+    public int getEdad() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(this.nacimiento);
+        Date actual = new Date();
+        Calendar calenActu = Calendar.getInstance();
+        calenActu.setTime(actual);
+
+        if ((calendar.get(Calendar.MONTH)) > calenActu.get(Calendar.MONTH) ) /*No ha cumplido */{
+            int edad = calenActu.get(Calendar.YEAR) - (calendar.get(Calendar.YEAR)) -1 ;
+            return edad;
+        } else if(calenActu.get(Calendar.MONTH) == (calendar.get(Calendar.MONTH)))/*No se sabe */{
+            if ( calenActu.get(Calendar.DAY_OF_MONTH) < (calendar.get(Calendar.DAY_OF_MONTH)))/*No ha cumplido */ {
+                int edad = calenActu.get(Calendar.YEAR) - (calendar.get(Calendar.YEAR)) - 1;
+                return edad;
+            }else {
+                int edad = calenActu.get(Calendar.YEAR) - (calendar.get(Calendar.YEAR))/*Si cumplió */;
+                return edad;
+            }
+        }else {
+            int edad = calenActu.get(Calendar.YEAR) - (calendar.get(Calendar.YEAR)) /* Si cumplió*/;
+            return edad;
+        }
     }
 }
