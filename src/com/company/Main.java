@@ -22,7 +22,6 @@ public class Main {
         Alumno alumno = new Alumno("Juan", "Perez", nacimiento, "3456545F");
         Academia academia = new Academia();
         academia.matricularAlumno("Juan", "Perez", nacimiento, "3456545F");
-        System.out.println(alumno.toString());
         System.out.println("La edad de " + alumno.getNombre() + " es: " + alumno.getEdad());
 
         try {
@@ -32,7 +31,6 @@ public class Main {
         }
         Alumno alumno2 = new Alumno("Xose", "Martinez", nacimiento, "2123233D");
         academia.matricularAlumno("Xose", "Martinez", nacimiento, "2123233D");
-        System.out.println(alumno2.toString());
         System.out.println("La edad de " + alumno2.getNombre() + " es: " + alumno2.getEdad());
         try {
             nacimiento = fecha.parse("16-08-1985");
@@ -41,14 +39,13 @@ public class Main {
         }
         Alumno alumno3 = new Alumno("Maria", "Lopez", nacimiento, "1235562121S");
         academia.matricularAlumno("Maria", "Lopez", nacimiento, "1235562121S");
-        System.out.println(alumno3.toString());
         System.out.println("La edad de " + alumno3.getNombre() + " es: " + alumno3.getEdad());
 
         Scanner leer = new Scanner(System.in);
 
         System.out.println("Elige opción: \n" +
                 "1. Crear alumno \n" +
-                "2. Mostrar alumno \n" +
+                "2. Mostrar alumnos \n" +
                 "10. Salir");
         int opcion = leer.nextInt();
         leer.nextLine();
@@ -72,6 +69,8 @@ public class Main {
                 academia.matricularAlumno(nombre,apellido,nacimiento,dni);
                 break;
             case 2:
+                System.out.println(academia.mostrarAlumnos());
+                leer.nextLine();
                 break;
             case 10:
                 salir=true;

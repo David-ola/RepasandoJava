@@ -24,9 +24,9 @@ public class Academia {
             this.academia.forEach(alumno->{
                 System.out.println(alumno.toString());
                 System.out.println(alumno.getNombre());
-                n.add(alumno.getNombre() + " "+ alumno.getApellidos() +" "+alumno.getNacimiento()+" "+alumno.getDni());
+                n.add(alumno.getNombre() + " "+ alumno.getApellidos() +" "+alumno.getNacimiento()+" "+alumno.getDni()+"\n");
             });
-            return null;
+            return n;
         }
     }
 
