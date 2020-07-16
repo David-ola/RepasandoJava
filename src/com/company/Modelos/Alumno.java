@@ -50,12 +50,10 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "alumno{" +
-                "nombre='" + nombre + '\'' +
+        return "nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", nacimiento=" + nacimiento +
-                ", dni='" + dni + '\'' +
-                '}';
+                ", dni='" + dni +"'";
     }
 
     public int getEdad() {

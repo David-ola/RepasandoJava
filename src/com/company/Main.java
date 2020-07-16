@@ -11,32 +11,17 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        SimpleDateFormat fecha = new SimpleDateFormat("dd-MM-yyyy");
         Date nacimiento = null;
-        try {
-            nacimiento = fecha.parse("16-07-1981");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+        nacimiento = convertirFecha("16-07-1981");
         Alumno alumno = new Alumno("Juan", "Perez", nacimiento, "3456545F");
         Academia academia = new Academia();
         academia.matricularAlumno("Juan", "Perez", nacimiento, "3456545F");
         System.out.println("La edad de " + alumno.getNombre() + " es: " + alumno.getEdad());
-
-        try {
-            nacimiento = fecha.parse("15-07-1985");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        nacimiento = convertirFecha("15-07-1985");
         Alumno alumno2 = new Alumno("Xose", "Martinez", nacimiento, "2123233D");
         academia.matricularAlumno("Xose", "Martinez", nacimiento, "2123233D");
         System.out.println("La edad de " + alumno2.getNombre() + " es: " + alumno2.getEdad());
-        try {
-            nacimiento = fecha.parse("16-08-1985");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        nacimiento = convertirFecha("16-08-1985");
         Alumno alumno3 = new Alumno("Maria", "Lopez", nacimiento, "1235562121S");
         academia.matricularAlumno("Maria", "Lopez", nacimiento, "1235562121S");
         System.out.println("La edad de " + alumno3.getNombre() + " es: " + alumno3.getEdad());
@@ -59,11 +44,7 @@ public class Main {
                 String apellido= leer.nextLine();
                 System.out.println("Introduzca fecha de nacimiento(dd-mm-yyyy)");
                 String fechaNacimiento=leer.nextLine();
-                try {
-                    nacimiento = fecha.parse(fechaNacimiento);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                nacimiento = convertirFecha(fechaNacimiento);
                 System.out.println("Introduzca DNI");
                 String dni= leer.nextLine();
                 academia.matricularAlumno(nombre,apellido,nacimiento,dni);
@@ -82,5 +63,16 @@ public class Main {
                 break;
         }
         }while(salir==false);
+    }
+
+    private static Date convertirFecha(String fecha){
+        SimpleDateFormat fecha1 = new SimpleDateFormat("dd-MM-yyyy");
+        Date nacimiento = null;
+        try {
+            nacimiento = fecha1.parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return nacimiento;
     }
 }

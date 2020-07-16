@@ -19,14 +19,18 @@ public class Academia {
             this.academia.add(new Alumno(nombre,apellido,nacimiento,dni));
         }
 
-        public List<String> mostrarAlumnos() {
-            List<String> n = new ArrayList<>();
-            this.academia.forEach(alumno->{
-                System.out.println(alumno.toString());
-                System.out.println(alumno.getNombre());
-                n.add(alumno.getNombre() + " "+ alumno.getApellidos() +" "+alumno.getNacimiento()+" "+alumno.getDni()+"\n");
+        public String mostrarAlumnos() {
+            String lista ="";
+            for (int i = 0; i <academia.size() ; i++) {
+                lista+= academia.get(i).toString();
+                lista+= "\n";
+            }
+            return lista;
+        /*    this.academia.forEach(alumno->{
+                lista+=alumno.toString();
+                n.add(alumno.toString());
             });
-            return n;
+            return n; */
         }
     }
 
