@@ -82,6 +82,6 @@ public class Alumno {
     }
 
     public int edad3() {
-        return 8;
+        return 9;
     }
 }
