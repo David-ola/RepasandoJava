@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.Modelos.Academia;
 import com.company.Modelos.Alumno;
 
 import java.text.ParseException;
@@ -24,6 +25,7 @@ public class Main {
 
         Scanner leer = new Scanner(System.in);
         boolean seguir = true;
+        Academia academia = new Academia();
         do {
             System.out.println("Elige una opcion: \n" +
                     "1. Crear alumno \n" +
@@ -33,8 +35,10 @@ public class Main {
             leer.nextLine();
             switch (opcion) {
                 case 1:
+                    crearAlumno(academia, leer);
                     break;
                 case 2:
+                    mostrarAlumno(academia, leer);
                     break;
                 case 10:
                     seguir = false;
@@ -44,4 +48,34 @@ public class Main {
 
         } while (seguir == true);
     }
+
+    private static void mostrarAlumno(Academia academia, Scanner leer) {
+
+    }
+
+    private static void crearAlumno(Academia academia, Scanner leer) {
+        System.out.println("Nombre: ");
+        String nombre = leer.nextLine();
+        System.out.println("Apellidos: ");
+        String apellidos = leer.nextLine();
+        System.out.println("Fecha de nacimiento: ");
+        String fechaNacimiento = leer.nextLine();
+        System.out.println("DNI: ");
+        String dni = leer.nextLine();
+
+        academia.addAlumno(nombre, apellidos, fechaNacimiento, dni);
+    }
+
+    private static Date convertirFecha(String fecha) {
+        SimpleDateFormat objSDF = new SimpleDateFormat("dd-MM-yyyy");
+        Date fechaNacimiento = null;
+        try {
+            fechaNacimiento = objSDF.parse("16-07-1981");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return fechaNacimiento;
+
+    }
+
 }

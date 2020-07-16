@@ -10,7 +10,7 @@ public class Academia {
     public Academia() {
         alumnoList=new ArrayList<>();
     }
-    public void  addAlumno(String nombre, String apellidos, Date fechaNacimiento, String dni){
+    public void  addAlumno(String nombre, String apellidos, String fechaNacimiento, String dni){
         this.alumnoList.add(new Alumno(nombre, apellidos, fechaNacimiento, dni));
     }
 
