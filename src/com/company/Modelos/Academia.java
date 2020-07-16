@@ -13,4 +13,11 @@ public class Academia {
     public void addAlumno(String nombre, String apellido, Date fechaNac, String DNI){
         this.alumnoList.add(new Alumno(nombre,apellido,fechaNac,DNI));
     }
+    public String showAllAlumnos(){
+        String texto="";
+        for (int i = 0; i < alumnoList.size() ; i++) {
+            texto+=alumnoList.get(i).toString();
+        }
+        return texto;
+    }
 }
