@@ -80,4 +80,8 @@ public class Alumno {
 
         return diffYear;
     }
+
+    public String setNombre(){
+        return nombre;
+    }
 }
