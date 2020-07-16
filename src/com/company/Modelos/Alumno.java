@@ -80,7 +80,7 @@ public class Alumno {
         return diffYear;
     }
     public int newEdad(){
-        return 5;
+        return 7;
     }
 
 }

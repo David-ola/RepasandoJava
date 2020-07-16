@@ -18,4 +18,13 @@ public class Academia {
 
             listaAlumnos.add(new Alumno(nombre, apellidos, fecha_nacimiento,dni));
     }
+
+    public String showAllAlumnos(){
+        String texto="";
+        for (int i = 0; i < listaAlumnos.size() ; i++) {
+            texto+=listaAlumnos.get(i).toString();
+
+        }
+        return texto;
+    }
 }
