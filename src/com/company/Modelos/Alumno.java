@@ -84,4 +84,8 @@ public class Alumno {
     public String setNombre(){
         return nombre;
     }
+
+    public int getEdad4(){
+        return 5;
+    }
 }
