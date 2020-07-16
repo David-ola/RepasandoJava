@@ -66,7 +66,6 @@ public class Alumno {
         int edad=Integer.parseInt(simpleDateFormat.format(new Date()))-Integer.parseInt(edadS);
         return edad;
     }
-
     public int getEdad2(){
         Calendar today = Calendar.getInstance();
         Calendar c = new GregorianCalendar();
@@ -80,4 +79,8 @@ public class Alumno {
 
         return diffYear;
     }
+    public int newEdad(){
+        return 0;
+    }
+
 }
