@@ -86,6 +86,6 @@ public class Alumno {
     }
 
     public int getEdad4(){
-        return 5;
+        return 9;
     }
 }
