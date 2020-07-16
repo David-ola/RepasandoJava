@@ -80,5 +80,9 @@ public class Alumno {
             if(diffDays<0) diffYear-=1;
 
         return diffYear;
+
+    }
+    public  int getEdad3(){
+        return 5;
     }
 }
