@@ -81,6 +81,6 @@ public class Alumno {
         return diffYear;
     }
     public int getEdad3(){
-        return 0;
+        return 5;
     }
 }
