@@ -60,24 +60,28 @@ public class Alumno {
         this.dni = dni;
     }
 
-    public int getEdad(){
+    public int getEdad() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY");
-        String edadS=simpleDateFormat.format(fechaNacimiento);
-        int edad=Integer.parseInt(simpleDateFormat.format(new Date()))-Integer.parseInt(edadS);
+        String edadS = simpleDateFormat.format(fechaNacimiento);
+        int edad = Integer.parseInt(simpleDateFormat.format(new Date())) - Integer.parseInt(edadS);
         return edad;
     }
 
-    public int getEdad2(){
+    public int getEdad2() {
         Calendar today = Calendar.getInstance();
         Calendar c = new GregorianCalendar();
         c.setTime(this.fechaNacimiento);
         int diffYear = today.get(Calendar.YEAR) - c.get(Calendar.YEAR);
-        int diffMonth =today.get(Calendar.MONTH) - c.get(Calendar.MONTH);
-        int diffDays=today.get(Calendar.DAY_OF_MONTH) - c.get(Calendar.DAY_OF_MONTH);
-        if(diffMonth<0) diffYear-=1;
-        if(diffMonth==0)
-            if(diffDays<0) diffYear-=1;
+        int diffMonth = today.get(Calendar.MONTH) - c.get(Calendar.MONTH);
+        int diffDays = today.get(Calendar.DAY_OF_MONTH) - c.get(Calendar.DAY_OF_MONTH);
+        if (diffMonth < 0) diffYear -= 1;
+        if (diffMonth == 0)
+            if (diffDays < 0) diffYear -= 1;
 
         return diffYear;
+    }
+
+    public int edad3() {
+        return 0;
     }
 }
