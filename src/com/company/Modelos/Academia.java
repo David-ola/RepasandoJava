@@ -80,4 +80,24 @@ public class Academia {
             throwables.printStackTrace();
         }
     }
+    public void cargarDatos(){
+        alumnoList.clear();//Vaciamos la lista actual
+        Connection conn=Conexion.getConn();
+        String consulta="select nombre,apellidos,fecha_nacimiento,dni from alumnos";
+        try {
+            PreparedStatement sentencia=conn.prepareStatement(consulta);
+            ResultSet rs=sentencia.executeQuery();
+            while (rs.next()){
+                String nombre=rs.getString(1);
+                String apellidos=rs.getString(2);
+                Date fecha_nacimiento=rs.getDate(3);
+                String dni=rs.getString(4);
+                alumnoList.add(new Alumno(nombre,apellidos,fecha_nacimiento,dni));
+
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
 }
