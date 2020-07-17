@@ -21,6 +21,7 @@ public class Main {
             System.out.println("Elige una opción: \n" +
                     "1.  Crear alumno \n" +
                     "2.  Mostrar alumnos\n" +
+                    "3.  Buscar alumno por DNI \n"+
                     "10. Salir");
             int opcion = leer.nextInt();
             leer.nextLine();
@@ -31,8 +32,9 @@ public class Main {
                 case 2:
                     System.out.println(academia.showAllAlumnos());
                     break;
-                //case 3:
-                 //   break;
+                case 3:
+                    buscarAlumnoDNI(academia);
+                    break;
                 case 10:
                     seguir=false;
                 default:
@@ -65,5 +67,12 @@ public class Main {
             e.printStackTrace();
         }
         return  fechaNacimiento;
+    }
+    private static void buscarAlumnoDNI(Academia academia) {
+        Scanner leer = new Scanner(System.in);
+        System.out.println("DNI del alumno a buscar: ");
+        String dni = leer.nextLine();
+        String existe = academia.buscarPorDNI(dni);
+        System.out.println(existe);
     }
 }
