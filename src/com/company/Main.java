@@ -2,7 +2,9 @@ package com.company;
 
 import com.company.Modelos.Academia;
 import com.company.Modelos.Alumno;
+import com.company.bd.Conexion;
 
+import java.sql.Connection;
 import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,6 +14,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        Connection conn= Conexion.getConn();
 
         Scanner leer = new Scanner(System.in);
         boolean seguir=true;
@@ -21,6 +24,8 @@ public class Main {
                     "1.  Crear alumno \n" +
                     "2.  Mostrar alumnos\n" +
                     "3.  Buscar alumno por DNI\n" +
+                    "4.  Guardar datos\n" +
+                    "5.  Cargar datos\n" +
                     "10. Salir");
             int opcion = leer.nextInt();
             leer.nextLine();
@@ -32,7 +37,13 @@ public class Main {
                     System.out.println(academia.showAllAlumnos());
                     break;
                 case 3:
-                    buscarPorDni(academia);
+                    buscarAlumnoPorDNI(academia,leer);
+                    break;
+                case 4:
+                    academia.guardarDatos();
+                    break;
+                case 5:
+                    academia.cargarDatos();
                     break;
                 case 10:
                     seguir=false;
@@ -42,6 +53,12 @@ public class Main {
             }
         }while (seguir==true);
 
+    }
+
+    private static void buscarAlumnoPorDNI(Academia academia, Scanner leer){
+        System.out.println("DNI alumno a buscar: ");
+        String dni=leer.nextLine();
+        System.out.println(academia.buscarAlumnoPorDNI(dni));
     }
 
     private static void crearAlumno(Academia academia, Scanner leer) {
@@ -67,15 +84,4 @@ public class Main {
         }
         return  fechaNacimiento;
     }
-    private static void buscarPorDni(Academia academia) {
-        Scanner leer = new Scanner(System.in);
-        System.out.println("DNI del alumno a buscar: ");
-        String dni = leer.nextLine();
-        boolean existe = academia.buscarPorDni(dni);
-        if (existe) {
-            System.out.println("El alumno con DNI " + dni + " existe");
-        } else
-            System.out.println("El alumno con DNI " + dni + " no existe");
-    }
-
 }
