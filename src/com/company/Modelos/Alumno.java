@@ -5,9 +5,10 @@ import java.util.Date;
 
 public class Alumno {
     private String nombre;
-    private String apellidos;
+    private String direccion;
     private Date nacimiento;
     private String dni;
+    private int id;
 
     public String getNombre() {
         return nombre;
@@ -17,12 +18,12 @@ public class Alumno {
         this.nombre = nombre;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public Date getNacimiento() {
@@ -41,9 +42,9 @@ public class Alumno {
         this.dni = dni;
     }
 
-    public Alumno(String nombre, String apellidos, Date nacimiento, String dni) {
+    public Alumno(String nombre, String direccion, Date nacimiento, String dni) {
         this.nombre = nombre;
-        this.apellidos = apellidos;
+        this.direccion = direccion;
         this.nacimiento = nacimiento;
         this.dni = dni;
     }
@@ -51,7 +52,7 @@ public class Alumno {
     @Override
     public String toString() {
         return "nombre:'" + nombre + '\'' +
-                ", apellidos:'" + apellidos + '\'' +
+                ", direccion:'" + direccion + '\'' +
                 ", nacimiento:" + nacimiento +
                 ", dni:'" + dni +"'";
     }
