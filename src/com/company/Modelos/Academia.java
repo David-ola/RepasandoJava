@@ -20,4 +20,12 @@ public class Academia {
         }
         return texto;
     }
+    public String buscarAlumnoPorDNI(String dni){
+        for (int i = 0; i < alumnoList.size() ; i++) {
+            if(alumnoList.get(i).getDni().equals(dni)){
+                return alumnoList.get(i).toString();
+            }
+        }
+        return "El alumno no esta en la academia";
+    }
 }
