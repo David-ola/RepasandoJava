@@ -31,6 +31,8 @@ public class Main {
                 case 2:
                     System.out.println(academia.showAllAlumnos());
                     break;
+                //case 3:
+                 //   break;
                 case 10:
                     seguir=false;
                 default:
