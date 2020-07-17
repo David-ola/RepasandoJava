@@ -29,7 +29,7 @@ public class Main {
         do {
             System.out.println("Elige una opcion: \n" +
                     "1. Crear alumno \n" +
-                    "2. Mostrar alumno \n" +
+                    "2. Mostrar alumnos \n" +
                     "10. Salir");
             int opcion = leer.nextInt();
             leer.nextLine();
@@ -38,7 +38,7 @@ public class Main {
                     crearAlumno(academia, leer);
                     break;
                 case 2:
-                    mostrarAlumno(academia, leer);
+                    System.out.println(academia.showAllAlumnos());
                     break;
                 case 10:
                     seguir = false;
@@ -47,10 +47,6 @@ public class Main {
             }
 
         } while (seguir == true);
-    }
-
-    private static void mostrarAlumno(Academia academia, Scanner leer) {
-
     }
 
     private static void crearAlumno(Academia academia, Scanner leer) {
@@ -65,6 +61,11 @@ public class Main {
 
         academia.addAlumno(nombre, apellidos, fechaNacimiento, dni);
     }
+
+
+
+
+
 
     private static Date convertirFecha(String fecha) {
         SimpleDateFormat objSDF = new SimpleDateFormat("dd-MM-yyyy");
