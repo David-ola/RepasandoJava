@@ -1,8 +1,10 @@
 package com.company.Modelos;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.text.ParseException;
 
 public class Academia {
     private List<Alumno> listaAlumnos;
@@ -26,5 +28,26 @@ public class Academia {
 
         }
         return texto;
+    }
+
+    private static Date convertirFecha(String fecha){
+        SimpleDateFormat objSDF = new SimpleDateFormat("dd-MM-yyyy");
+        Date fechaNacimiento=null;
+        try {
+            fechaNacimiento = objSDF.parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return  fechaNacimiento;
+    }
+
+    public String buscarAlumno(String dniBuscar) {
+        for (int i = 0; i <listaAlumnos.size() ; i++) {
+            if(listaAlumnos.get(i).getDni().equals(dniBuscar)){
+                return listaAlumnos.get(i).toString();
+            }
+
+        }
+return "El alumno no esta en la academia";
     }
 }
