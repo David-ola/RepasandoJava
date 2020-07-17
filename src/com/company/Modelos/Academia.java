@@ -80,8 +80,8 @@ public class Academia {
 
     private void crearAlumno(Alumno alumno) {
         Connection conn=Conexion.getConn();
-        String consulta="INSERT INTO ALUMNOS (nombre,apellidos,fecha_nac,dni) " +
-                "values (?,?,?,?)";
+        String consulta="INSERT INTO ALUMNOS (nombre,apellidos,fecha_nac,dni,created_at) " +
+                "values (?,?,?,?,now())";
         try {
             PreparedStatement sentencia=conn.prepareStatement(consulta);
             sentencia.setString(1,alumno.getNombre());
@@ -93,5 +93,25 @@ public class Academia {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public void cargarDatos() {
+        alumnoList.clear(); //Vaciamos la lista actual
+        Connection conn=Conexion.getConn();
+        String consulta="select nombre,apellidos,fecha_nac,dni from alumnos";
+        try {
+            PreparedStatement sentencia=conn.prepareStatement(consulta);
+            ResultSet rs=sentencia.executeQuery();
+            while (rs.next()){
+                String nombre= rs.getString(1);
+                String apellidos=rs.getString(2);
+                Date fecha_nac=rs.getDate(3);
+                String dni=rs.getString(4);
+                alumnoList.add(new Alumno(nombre,apellidos,fecha_nac,dni));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 }
