@@ -47,8 +47,8 @@ public class Alumno {
         this.apellidos = apellidos;
     }
 
-    public java.sql.Date getFechaNacimiento() {
-        return (java.sql.Date) fechaNacimiento;
+    public Date getFechaNacimiento() {
+        return  fechaNacimiento;
     }
 
     public void setFechaNacimiento(Date fechaNacimiento) {

@@ -72,8 +72,8 @@ public class Academia {
             PreparedStatement sentencia=conn.prepareStatement(consulta);
             sentencia.setString(1,alumno.getNombre());
             sentencia.setString(2,alumno.getApellidos());
-            Date fechaSQL= new java.sql.Date(alumno.getFechaNacimiento().getTime());
-            sentencia.setDate(3,(java.sql.Date) alumno.getFechaNacimiento());
+            java.sql.Date fechaSQL= new java.sql.Date(alumno.getFechaNacimiento().getTime());
+            sentencia.setDate(3,fechaSQL);
             sentencia.setString(4,alumno.getDni());
             sentencia.execute();
         } catch (SQLException throwables) {

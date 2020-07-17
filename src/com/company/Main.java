@@ -86,10 +86,10 @@ public class Main {
 
 
     private static Date convertirFecha(String fecha) {
-        SimpleDateFormat objSDF = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat objSDF = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaNacimiento = null;
         try {
-            fechaNacimiento = objSDF.parse("16-07-1981");
+            fechaNacimiento = objSDF.parse(fecha);
         } catch (ParseException e) {
             e.printStackTrace();
         }
