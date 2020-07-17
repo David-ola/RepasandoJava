@@ -3,6 +3,7 @@ package com.company;
 import com.company.Modelos.Academia;
 import com.company.Modelos.Alumno;
 
+import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,25 +12,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        SimpleDateFormat objSDF = new SimpleDateFormat("dd-MM-yyyy");
-        Date fechaNacimiento=null;
-        try {
-           fechaNacimiento = objSDF.parse("16-07-1981");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        Alumno alumno=new Alumno("Juan","Perez",fechaNacimiento,"3456545F");
-        System.out.println(alumno.toString());
-        System.out.println("La edad de "+alumno.getNombre()+ " es: "+alumno.getEdad2());
 
         Scanner leer = new Scanner(System.in);
         boolean seguir=true;
         Academia academia=new Academia();
         do {
             System.out.println("Elige una opción: \n" +
-                    "1. Crear alumno \n" +
-                    "2. Mostrar alumno\n" +
+                    "1.  Crear alumno \n" +
+                    "2.  Mostrar alumnos\n" +
+                    "3.  Buscar alumno por DNI\n" +
                     "10. Salir");
             int opcion = leer.nextInt();
             leer.nextLine();
@@ -38,6 +29,10 @@ public class Main {
                     crearAlumno(academia,leer);
                     break;
                 case 2:
+                    System.out.println(academia.showAllAlumnos());
+                    break;
+                case 3:
+                    buscarPorDni(academia);
                     break;
                 case 10:
                     seguir=false;
@@ -46,6 +41,7 @@ public class Main {
 
             }
         }while (seguir==true);
+
     }
 
     private static void crearAlumno(Academia academia, Scanner leer) {
@@ -57,6 +53,7 @@ public class Main {
         String fechaNacimiento=leer.nextLine();
         System.out.println("DNI: ");
         String dni=leer.nextLine();
+
         academia.addAlumno(nombre,apellidos,convertirFecha(fechaNacimiento),dni);
     }
 
@@ -68,6 +65,17 @@ public class Main {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return fechaNacimiento;
+        return  fechaNacimiento;
     }
+    private static void buscarPorDni(Academia academia) {
+        Scanner leer = new Scanner(System.in);
+        System.out.println("DNI del alumno a buscar: ");
+        String dni = leer.nextLine();
+        boolean existe = academia.buscarPorDni(dni);
+        if (existe) {
+            System.out.println("El alumno con DNI " + dni + " existe");
+        } else
+            System.out.println("El alumno con DNI " + dni + " no existe");
+    }
+
 }
