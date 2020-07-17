@@ -11,9 +11,6 @@ public class Alumno {
     private Date fechaNacimiento;
     private String dni;
 
-    public Alumno(String nombre, String apellidos, String fechaNacimiento, String dni) {
-    }
-
     @Override
     public String toString() {
         return "Alumno{" +
@@ -83,7 +80,8 @@ public class Alumno {
 
         return diffYear;
     }
+
     public int getEdad3(){
-        return 5;
+       return 0;
     }
 }
