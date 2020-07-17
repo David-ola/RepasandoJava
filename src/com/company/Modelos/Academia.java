@@ -47,7 +47,7 @@ public class Academia {
                 ResultSet resultado=sentencia.executeQuery();
                 if(resultado.next()){
                     //El alumno existe
-
+                    actualizarAlumno(alumnoList.get(i));
                 }else{
                     //El alumno no exite
                     crearAlumno(alumnoList.get(i));
@@ -60,6 +60,22 @@ public class Academia {
 
 
 
+    }
+
+    private void actualizarAlumno(Alumno alumno) {
+        Connection conn=Conexion.getConn();
+        String consulta="UPDATE ALUMNOS SET nombre=?,apellidos=?,fecha_nac=? WHERE dni=?";
+        try {
+            PreparedStatement sentencia=conn.prepareStatement(consulta);
+            sentencia.setString(1,alumno.getNombre());
+            sentencia.setString(2,alumno.getApellidos());
+            java.sql.Date fechaSQL=new  java.sql.Date(alumno.getFechaNacimiento().getTime());
+            sentencia.setDate(3, fechaSQL);
+            sentencia.setString(4,alumno.getDni());
+            sentencia.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     private void crearAlumno(Alumno alumno) {
