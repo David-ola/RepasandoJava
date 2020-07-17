@@ -20,6 +20,7 @@ public class Main {
             System.out.println("Elige una opción: \n" +
                     "1.  Crear alumno \n" +
                     "2.  Mostrar alumnos\n" +
+                    "3.  Buscar alumno por DNI\n" +
                     "10. Salir");
             int opcion = leer.nextInt();
             leer.nextLine();
@@ -30,6 +31,9 @@ public class Main {
                 case 2:
                     System.out.println(academia.showAllAlumnos());
                     break;
+                case 3:
+                    buscarAlumnoPorDNI(academia,leer);
+                    break;
                 case 10:
                     seguir=false;
                 default:
@@ -38,6 +42,12 @@ public class Main {
             }
         }while (seguir==true);
 
+    }
+
+    private static void buscarAlumnoPorDNI(Academia academia, Scanner leer){
+        System.out.println("DNI alumno a buscar: ");
+        String dni=leer.nextLine();
+        System.out.println(academia.buscarAlumnoPorDNI(dni));
     }
 
     private static void crearAlumno(Academia academia, Scanner leer) {
