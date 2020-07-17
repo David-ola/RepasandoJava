@@ -26,11 +26,15 @@ public class Academia {
                 lista+= "\n";
             }
             return lista;
-        /*    this.academia.forEach(alumno->{
-                lista+=alumno.toString();
-                n.add(alumno.toString());
-            });
-            return n; */
         }
+
+    public String buscarDNI(String dniBusqueda) {
+        for (int i = 0; i < academia.size(); i++) {
+            if (academia.get(i).getDni().equals(dniBusqueda)) {
+                return academia.get(i).toString();
+            }
+
+        }return "No se ha encontrado tal DNI en la lista";
     }
+}
 

@@ -35,6 +35,7 @@ public class Main {
             System.out.println("Elige opción: \n" +
                 "1. Crear alumno \n" +
                 "2. Mostrar alumnos \n" +
+                    "3.Buscar por DNI \n" +
                 "10. Salir");
             int opcion = leer.nextInt();
             leer.nextLine();
@@ -54,6 +55,11 @@ public class Main {
                 break;
             case 2:
                 System.out.println(academia.mostrarAlumnos());
+                break;
+            case 3:
+                System.out.println("Introduzca DNI");
+                String dniBusqueda=leer.nextLine();
+                System.out.println(academia.buscarDNI(dniBusqueda));
                 break;
             case 10:
                 salir=true;
