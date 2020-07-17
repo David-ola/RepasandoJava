@@ -25,6 +25,7 @@ public class Main {
                     "2.  Mostrar alumnos\n" +
                     "3.  Buscar alumno por DNI\n" +
                     "4.  Guardar datos\n" +
+                    "5.  Cargar datos\n" +
                     "10. Salir");
             int opcion = leer.nextInt();
             leer.nextLine();
@@ -40,6 +41,9 @@ public class Main {
                     break;
                 case 4:
                     academia.guardarDatos();
+                    break;
+                case 5:
+                    academia.cargarDatos();
                     break;
                 case 10:
                     seguir=false;
