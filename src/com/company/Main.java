@@ -2,7 +2,9 @@ package com.company;
 
 import com.company.Modelos.Academia;
 import com.company.Modelos.Alumno;
+import com.company.bd.Conexion;
 
+import java.sql.Connection;
 import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,17 +14,19 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        SimpleDateFormat objSDF = new SimpleDateFormat("dd-MM-yyyy");
-        Date fechaNacimiento = null;
-        try {
-            fechaNacimiento = objSDF.parse("16-07-1981");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Connection conn= Conexion.getConn();
 
-        Alumno alumno = new Alumno("Juan", "Perez", fechaNacimiento, "3456545F");
-        System.out.println(alumno.toString());
-        System.out.println("La edad de " + alumno.getNombre() + " es: " + alumno.getEdad2());
+        //SimpleDateFormat objSDF = new SimpleDateFormat("dd-MM-yyyy");
+        //Date fechaNacimiento = null;
+        //try {
+            //echaNacimiento = objSDF.parse("16-07-1981");
+       // } catch (ParseException e) {
+           // e.printStackTrace();
+        //}
+
+        //Alumno alumno = new Alumno("Juan", "Perez", fechaNacimiento, "3456545F");
+        //System.out.println(alumno.toString());
+        //System.out.println("La edad de " + alumno.getNombre() + " es: " + alumno.getEdad2());
 
         Scanner leer = new Scanner(System.in);
         boolean seguir = true;
@@ -32,6 +36,7 @@ public class Main {
                     "1. Crear alumno \n" +
                     "2. Mostrar alumnos \n" +
                     "3. Buscar alumno por DNI \n" +
+                    "4. Guardar datos \n " +
                     "10. Salir");
             int opcion = leer.nextInt();
             leer.nextLine();
@@ -45,6 +50,9 @@ public class Main {
                 case 3:
                     buscarAlumnoPorDNI(academia,leer);
                     break;
+                case 4:
+                    academia.guardarDatos();
+                    break;
                 case 10:
                     seguir = false;
                 default:
@@ -53,6 +61,7 @@ public class Main {
 
         } while (seguir == true);
     }
+
 
     private static void buscarAlumnoPorDNI(Academia academia, Scanner leer) {
         System.out.println("DNI alumno a buscar: ");
