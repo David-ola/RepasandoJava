@@ -28,14 +28,16 @@ public class Main {
 
         Scanner leer = new Scanner(System.in);
 
-        System.out.println("Elige opción: \n" +
+
+
+        boolean salir=false;
+        do {
+            System.out.println("Elige opción: \n" +
                 "1. Crear alumno \n" +
                 "2. Mostrar alumnos \n" +
                 "10. Salir");
-        int opcion = leer.nextInt();
-        leer.nextLine();
-        boolean salir=false;
-        do {
+            int opcion = leer.nextInt();
+            leer.nextLine();
         switch(opcion) {
             case 1:
                 System.out.println("Introduzca nombre");
@@ -48,10 +50,10 @@ public class Main {
                 System.out.println("Introduzca DNI");
                 String dni= leer.nextLine();
                 academia.matricularAlumno(nombre,apellido,nacimiento,dni);
+                System.out.println("Alumno creado");
                 break;
             case 2:
                 System.out.println(academia.mostrarAlumnos());
-                leer.nextLine();
                 break;
             case 10:
                 salir=true;
