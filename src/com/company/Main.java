@@ -3,6 +3,7 @@ package com.company;
 import com.company.Modelos.Academia;
 import com.company.Modelos.Alumno;
 
+import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,59 +13,64 @@ public class Main {
 
     public static void main(String[] args) {
         SimpleDateFormat objSDF = new SimpleDateFormat("dd-MM-yyyy");
-        Date fechaNacimiento = null;
+        Date fechaNacimiento=null;
         try {
-            fechaNacimiento = objSDF.parse("16-07-1981");
+           fechaNacimiento = objSDF.parse("16-07-1981");
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        Alumno alumno = new Alumno("Juan", "Perez", fechaNacimiento, "3456545F");
+        Alumno alumno=new Alumno("Juan","Perez",fechaNacimiento,"3456545F");
         System.out.println(alumno.toString());
-        System.out.println("La edad de " + alumno.getNombre() + " es: " + alumno.getEdad2());
+        System.out.println("La edad de "+alumno.getNombre()+ " es: "+alumno.getEdad2());
 
         Scanner leer = new Scanner(System.in);
-        boolean seguir = true;
+        boolean seguir=true;
         Academia academia=new Academia();
         do {
-            System.out.println("Elige una opcion: \n" +
-                    "1. Crear alumno \n" +
-                    "2. Mostrar alumno\n" +
+            System.out.println("Elige una opción: \n" +
+                    "1.  Crear alumno \n" +
+                    "2.  Mostrar alumno\n" +
                     "10. Salir");
             int opcion = leer.nextInt();
             leer.nextLine();
-
             switch (opcion) {
                 case 1:
                     crearAlumno(academia,leer);
                     break;
                 case 2:
-                    mostrarAlumnos (academia);
                     break;
                 case 10:
-                    seguir = false;
+                    seguir=false;
                 default:
                     break;
-            }
 
-        } while (seguir == true);
+            }
+        }while (seguir==true);
+
     }
 
     private static void crearAlumno(Academia academia, Scanner leer) {
         System.out.println("Nombre: ");
-        String nombre= leer.nextLine();
+        String nombre=leer.nextLine();
         System.out.println("Apellidos: ");
-        String apellidos= leer.nextLine();
-        System.out.println("Fecha nacimiento: ");
-        String fechaNacimiento= leer.nextLine();
+        String apellidos=leer.nextLine();
+        System.out.println("Fecha de nacimiento: ");
+        String fechaNacimiento=leer.nextLine();
         System.out.println("DNI: ");
-        String dni= leer.nextLine();
+        String dni=leer.nextLine();
+
+        academia.addAlumno(nombre,apellidos,convertirFecha(fechaNacimiento),dni);
     }
-    private  Date convertirFecha(String fecha){
-        SimpleDateFormat objSDF=new SimpleDateFormat("dd-MM-yyyy");
+
+    private static Date convertirFecha(String fecha){
+        SimpleDateFormat objSDF = new SimpleDateFormat("dd-MM-yyyy");
         Date fechaNacimiento=null;
         try {
-
+            fechaNacimiento = objSDF.parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+        return  fechaNacimiento;
     }
 }

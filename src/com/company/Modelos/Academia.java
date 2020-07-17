@@ -5,26 +5,19 @@ import java.util.Date;
 import java.util.List;
 
 public class Academia {
-
-    private List<Alumno> alumnos;
-
-    public Academia(List<Alumno> alumnos) {
-        this.alumnos = alumnos;
-    }
+    private List<Alumno> alumnoList;
 
     public Academia() {
-        this.alumnos = new ArrayList<>();
+        alumnoList=new ArrayList<>();
     }
-
-    public void crearAlumno(String nombre, String apellidos, Date fechaNacimiento, String dni) {
-
-        this.alumnos.add(new Alumno(nombre, apellidos, fechaNacimiento, dni));
+    public void addAlumno(String nombre, String apellido, Date fechaNac, String DNI){
+        this.alumnoList.add(new Alumno(nombre,apellido,fechaNac,DNI));
     }
-
-    public List<String> mostrarAlumnos() {
-        List<String> n = new ArrayList<>();
-        this.alumnos.forEach(alumno -> {
-            n.add(alumno.getNombre() + " " + alumno.getApellidos() + " " + alumno.getFechaNacimiento() + " " + alumno.getDni());
-        });
+    public String showAllAlumnos(){
+        String texto="";
+        for (int i = 0; i < alumnoList.size() ; i++) {
+            texto+=alumnoList.get(i).toString();
+        }
+        return texto;
     }
 }
