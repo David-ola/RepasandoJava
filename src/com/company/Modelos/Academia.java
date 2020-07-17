@@ -1,5 +1,11 @@
 package com.company.Modelos;
 
+import com.company.bd.Conexion;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +24,7 @@ public class Academia {
 
         public void addAlumno(String nombre, String apellidos, Date fecha_nacimiento, String dni) {
 
-            listaAlumnos.add(new Alumno(nombre, apellidos, fecha_nacimiento,dni));
+            listaAlumnos.add(new Alumno(nombre,apellidos,fecha_nacimiento,dni));
     }
 
     public String showAllAlumnos(){
@@ -49,5 +55,44 @@ public class Academia {
 
         }
 return "El alumno no esta en la academia";
+    }
+    public void guardarDatos(){
+        Connection conexion= Conexion.getConexion();
+        String consulta ="select * from alumnos where dni=?";
+        PreparedStatement sentencia=null;
+        for (int i = 0; i <listaAlumnos.size() ; i++) {
+
+            try {
+                 sentencia = conexion.prepareStatement(consulta);
+                 sentencia.setString(1,listaAlumnos.get(i).getDni());
+                ResultSet resultado= sentencia.executeQuery();
+                if(resultado.next()){
+                    //El alumno existe
+
+                }else{
+                    //El alumno no existe
+                    crearAlumno(listaAlumnos.get(i));
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
+
+    private void crearAlumno(Alumno alumno) {
+        Connection conexion= Conexion.getConexion();
+        String consulta="Insert into alumnos (nombre, apellidos,fecha_nac, dni) values (?,?,?,?)";
+        try {
+            PreparedStatement sentencia=conexion.prepareStatement(consulta);
+            sentencia.setString(1,alumno.getNombre());
+            sentencia.setString(2,alumno.getApellidos());
+          java.sql.Date fechaSQL=new java.sql.Date(alumno.getFechaNacimiento().getTime());
+          sentencia.setDate(3,fechaSQL);
+            sentencia.setString(4,alumno.getDni());
+            sentencia.execute();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

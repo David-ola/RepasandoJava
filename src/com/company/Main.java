@@ -2,7 +2,9 @@ package com.company;
 
 import com.company.Modelos.Academia;
 import com.company.Modelos.Alumno;
+import com.company.bd.Conexion;
 
+import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -13,7 +15,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
+Connection conexion= Conexion.getConexion();
         Scanner leer = new Scanner(System.in);
         boolean seguir = true;
         Academia academia=new Academia();
@@ -21,7 +23,9 @@ public class Main {
             System.out.println("Elige una opcion: \n" +
                     "1. Crear alumno  \n" +
                     "2. Mostrar alumno \n" +
-                    "3. Buscar alumno por DNI"
+                    "3. Buscar alumno por DNI\n" +
+                    "4.  Guardar datos\n"+
+                    "10. Salir"
             );
             int opcion = leer.nextInt();
             leer.nextLine();
@@ -37,6 +41,10 @@ crearAlumno(academia,leer);
                     String dniBuscar=leer.nextLine();
                     System.out.println(academia.buscarAlumno(dniBuscar));
                     break;
+                case 4:
+                    academia.guardarDatos();
+                    break;
+
                 case 10:
                     seguir = false;
                 default:
