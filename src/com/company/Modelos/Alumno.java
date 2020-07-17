@@ -81,11 +81,7 @@ public class Alumno {
         return diffYear;
     }
 
-    public String setNombre(){
-        return nombre;
-    }
-
-    public int getEdad4(){
-        return 9;
+    public int getEdad3(){
+       return 0;
     }
 }
