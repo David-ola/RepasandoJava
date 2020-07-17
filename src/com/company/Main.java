@@ -25,6 +25,7 @@ Connection conexion= Conexion.getConexion();
                     "2. Mostrar alumno \n" +
                     "3. Buscar alumno por DNI\n" +
                     "4.  Guardar datos\n"+
+                    "5. Cargar datos\n"+
                     "10. Salir"
             );
             int opcion = leer.nextInt();
@@ -43,6 +44,9 @@ crearAlumno(academia,leer);
                     break;
                 case 4:
                     academia.guardarDatos();
+                    break;
+                case 5:
+                    academia.cargarDatos();
                     break;
 
                 case 10:

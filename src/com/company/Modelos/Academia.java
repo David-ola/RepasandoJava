@@ -95,4 +95,24 @@ return "El alumno no esta en la academia";
             throwables.printStackTrace();
         }
     }
+    public void cargarDatos(){
+        listaAlumnos.clear();//vaciar lista actual
+        Connection conexion=Conexion.getConexion();
+        String consulta="select nombre,apellidos,fecha_nac,dni from alumnos";
+        try {
+            PreparedStatement sentencia=conexion.prepareStatement(consulta);
+            ResultSet rs=sentencia.executeQuery();
+            while (rs.next()) {
+                String nombre= rs.getString(1);
+                String apellidos= rs.getString(2);
+                Date fecha_nac= rs.getDate(3);
+                String dni= rs.getString(4);
+                listaAlumnos.add(new Alumno(nombre,apellidos,fecha_nac,dni));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
